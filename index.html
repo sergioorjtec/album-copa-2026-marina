@@ -86,7 +86,8 @@ document.getElementById("f").addEventListener("submit", async function(ev){
 });
 if (!(window.crypto && crypto.subtle)) {
   document.getElementById("err").textContent = "Este navegador não suporta o desbloqueio (precisa de HTTPS).";
-} else { tryStored(); }
+} else if (document.readyState === "complete") { tryStored(); }
+else { window.addEventListener("load", function(){ tryStored(); }); }
 </script>
 </body>
 </html>
